@@ -93,7 +93,7 @@ export default function MessageCard({ user }: MessageCardProps) {
   };
 
   return (
-    <div className="min-h-screen w-full flex items-center justify-center md:mt-10">
+    <div className="min-h-screen w-full flex items-center justify-center pt-20">
       <Card className="w-full max-w-md backdrop-blur-xl bg-primary/50 border-white/20 text-white">
         <CardHeader className="text-center space-y-2 pb-2">
           <h1 className="text-3xl font-bold tracking-tight">
