@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
 const loveMessages = [
@@ -49,6 +50,11 @@ const Hero = () => {
       <p className="text-xl md:text-3xl font-medium text-primary mb-12">
         Express genuine LOVE
       </p>
+      <Link href="/anonymous-message">
+        <button className="mt-5 bg-gradient-to-r from-pink-400 to-primary/70 text-white px-5 py-2 rounded-full hover:from-pink-600 hover:to-primary transition transform hover:scale-105 inline-block shadow-lg">
+          Get Message Link
+        </button>
+      </Link>
     </section>
   );
 };

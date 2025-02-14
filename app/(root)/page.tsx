@@ -1,19 +1,19 @@
 // import Link from "next/link";
 // import Features from "../../components/Features";
-// import Hero from "@/components/Hero";
+import Hero from "@/components/Hero";
 // import { getUser } from "@/lib/appwrite/auth";
-import { redirect } from "next/navigation";
+// import { redirect } from "next/navigation";
 
 export default async function Home() {
   // const user = await getUser();
 
-  redirect("/anonymous-message");
+  // redirect("/anonymous-message");
 
   return (
     <div className="relative min-h-screen">
       <div className="relative z-10 space-y-20 px-4 pt-24">
         {/* Hero Section */}
-        {/* <Hero /> */}
+        <Hero />
 
         {/* <Features user={user} /> */}
 
