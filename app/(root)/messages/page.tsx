@@ -5,7 +5,6 @@ import { redirect } from "next/navigation";
 import React from "react";
 
 export default async function MessagesPage() {
-  
   const user = await getUser();
   if (!user) {
     redirect("/login?redirect=/messages");

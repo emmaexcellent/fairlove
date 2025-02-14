@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -24,6 +24,22 @@ import Image from "next/image";
 
 export function AuthForm({ authPage }: { authPage: "login" | "signup" }) {
   const router = useRouter()
+
+  const [user, setUser] = useState<Models.Document | null>(null);
+
+  useEffect(() => {
+    getUser().then((data) => setUser(data));
+  }, []);
+    
+  if (user) {
+    router.push("/");
+  }
+
+  const [submittingForm, setSubmittingForm] = useState(false);
+
+  const urlParams = useSearchParams();
+  const redirect_url = urlParams.get("redirect");
+
   const formSchema = z.object({
     username:
       authPage === "signup"
@@ -32,11 +48,6 @@ export function AuthForm({ authPage }: { authPage: "login" | "signup" }) {
     email: z.string().email("Invalid email address"),
     password: z.string().min(8, "Password must be at least 8 characters"),
   });
-
-  const [submittingForm, setSubmittingForm] = useState(false);
-
-  const urlParams = useSearchParams();
-  const redirect_url = urlParams.get("redirect");
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),

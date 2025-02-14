@@ -32,8 +32,9 @@ import {
 import { toast } from "sonner";
 import { Models } from "node-appwrite";
 import { requestEmailVerification, updateProfileData, verifyEmailRequest } from "@/lib/appwrite/crud";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { Loader2 } from "lucide-react";
+import { getUser } from "@/lib/appwrite/auth";
 
 const nameSchema = z.object({
   username: z.string().min(2, "Name must be at least 2 characters"),
@@ -54,7 +55,12 @@ type NameFormValues = z.infer<typeof nameSchema>;
 type EmailFormValues = z.infer<typeof emailSchema>;
 type PasswordFormValues = z.infer<typeof passwordSchema>;
 
-function ProfileSettings({ initialUserData }: { initialUserData: Models.Document }) {
+function ProfileSettings({ initialUserData }: { initialUserData: Models.Document | null }) {
+  const router = useRouter()
+
+  if (!initialUserData) {
+    router.push("/login?redirect=/profile");
+  }
   const verificationParams = useSearchParams()
   const userId = verificationParams.get("userId")
   const secret = verificationParams.get("secret")
@@ -67,7 +73,7 @@ function ProfileSettings({ initialUserData }: { initialUserData: Models.Document
   };
 
   const verifyEmailSecret = async () => {
-    const response = await verifyEmailRequest(userId!, secret!, user)
+    const response = await verifyEmailRequest(userId!, secret!, user!);
     if(response.user){
       setUser(response.user)
       toast.success(response.message);
@@ -82,7 +88,7 @@ function ProfileSettings({ initialUserData }: { initialUserData: Models.Document
   }, []);
   
   
-  const [user, setUser] = useState<Models.Document>(initialUserData);
+  const [user, setUser] = useState<Models.Document | null>(initialUserData);
   const [isUpdating, setIsUpdating] = useState(false);
   
   const nameForm = useForm<NameFormValues>({
@@ -106,7 +112,7 @@ function ProfileSettings({ initialUserData }: { initialUserData: Models.Document
   ) => {
     setIsUpdating(true);
     try {
-      const newUserData = await updateProfileData(user.$id, field, data)
+      const newUserData = await updateProfileData(user?.$id!, field, data)
       if (newUserData) {
         setUser(newUserData);
         toast.success(`Your ${field} has been successfully updated.`);
@@ -131,7 +137,7 @@ function ProfileSettings({ initialUserData }: { initialUserData: Models.Document
   const handleSendEmailVerification = async () => {
     setIsUpdating(true);
     try {
-      await requestEmailVerification(user);
+      await requestEmailVerification(user!);
       toast.success(
         "Please check your inbox and follow the instructions to verify your email."
       );
@@ -158,7 +164,7 @@ function ProfileSettings({ initialUserData }: { initialUserData: Models.Document
           <div className="w-full flex justify-between items-center p-3 rounded bg-primary/10">
             <div>
               <h3 className="text-lg font-medium">Username</h3>
-              <p className="text-sm text-gray-500">{user.username}</p>
+              <p className="text-sm text-gray-500">{user?.username}</p>
             </div>
             <Dialog>
               <DialogTrigger asChild>
@@ -205,7 +211,7 @@ function ProfileSettings({ initialUserData }: { initialUserData: Models.Document
           <div className="w-full flex justify-between items-center p-3 rounded bg-primary/10">
             <div>
               <h3 className="text-lg font-medium">Email</h3>
-              <p className="text-sm text-gray-500 line-clamp-1">{user.email}</p>
+              <p className="text-sm text-gray-500 line-clamp-1">{user?.email}</p>
             </div>
             <Dialog>
               <DialogTrigger asChild>
@@ -327,12 +333,12 @@ function ProfileSettings({ initialUserData }: { initialUserData: Models.Document
             <div>
               <h3 className="text-lg font-medium">Email Verification</h3>
               <p
-                className={`text-sm ${user.verified ? "text-green-500" : "text-gray-500"} `}
+                className={`text-sm ${user?.verified ? "text-green-500" : "text-gray-500"} `}
               >
-                {user.verified ? "Verified" : "Not verified"}
+                {user?.verified ? "Verified" : "Not verified"}
               </p>
             </div>
-            {!user.verified && (
+            {!user?.verified && (
               <Button
                 onClick={handleSendEmailVerification}
                 disabled={isUpdating}
@@ -354,7 +360,13 @@ const LoadingFallback = () => (
   </div>
 );
 
-const SuspendedProfileSettings = ({user}: {user : Models.Document}) => {
+const SuspendedProfileSettings = () => {
+  const [user, setUser] = useState<Models.Document | null>(null);
+
+  useEffect(() => {
+    getUser().then((data) => setUser(data));
+  }, []);
+
   return (
     <Suspense fallback={<LoadingFallback />}>
       <ProfileSettings initialUserData={user} />

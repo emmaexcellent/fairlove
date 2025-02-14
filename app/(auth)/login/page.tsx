@@ -2,15 +2,7 @@ import { AuthForm } from "@/components/auth/auth-form";
 import { Loader2 } from "lucide-react";
 import { Suspense } from "react";
 
-// import { getUser } from "@/lib/appwrite/auth";
-// import { redirect } from "next/navigation";
-
 export default async function LoginPage() {
-    
-  // const user = await getUser();
-  // if (user) {
-  //   redirect("/");
-  // }
 
   return (
     <div className="w-full max-w-sm md:max-w-3xl">
