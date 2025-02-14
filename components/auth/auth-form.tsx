@@ -18,9 +18,10 @@ import { useForm } from "react-hook-form";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Loader2 } from "lucide-react";
 import { toast } from "sonner";
-import { createAccount, createSession } from "@/lib/appwrite/auth";
+import { createAccount, createSession, getUser } from "@/lib/appwrite/auth";
 import Link from "next/link";
 import Image from "next/image";
+import { Models } from "node-appwrite";
 
 export function AuthForm({ authPage }: { authPage: "login" | "signup" }) {
   const router = useRouter()
