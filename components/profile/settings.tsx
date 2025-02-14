@@ -161,7 +161,7 @@ export default function ProfileSettings({ initialUserData }: { initialUserData: 
             </div>
             <Dialog>
               <DialogTrigger asChild>
-                <Button variant="outline">Change</Button>
+                <Button size="sm" variant="outline">Change</Button>
               </DialogTrigger>
               <DialogContent>
                 <DialogHeader>
@@ -204,11 +204,11 @@ export default function ProfileSettings({ initialUserData }: { initialUserData: 
           <div className="w-full flex justify-between items-center p-3 rounded bg-primary/10">
             <div>
               <h3 className="text-lg font-medium">Email</h3>
-              <p className="text-sm text-gray-500">{user.email}</p>
+              <p className="text-sm text-gray-500 line-clamp-1">{user.email}</p>
             </div>
             <Dialog>
               <DialogTrigger asChild>
-                <Button variant="outline">Change</Button>
+                <Button  size="sm" variant="outline">Change</Button>
               </DialogTrigger>
               <DialogContent>
                 <DialogHeader>
@@ -269,7 +269,7 @@ export default function ProfileSettings({ initialUserData }: { initialUserData: 
             </div>
             <Dialog>
               <DialogTrigger asChild>
-                <Button variant="outline">Change</Button>
+                <Button  size="sm" variant="outline">Change</Button>
               </DialogTrigger>
               <DialogContent>
                 <DialogHeader>

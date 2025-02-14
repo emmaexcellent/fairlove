@@ -48,11 +48,11 @@ export const createSession = async (
       message: "Login Successful",
     };
     
-  } catch (error: any) {
-    console.error(error.message);
+  } catch (error: unknown) {
+    console.error(error);
     return {
       success: false,
-      message: error.message || "An error occurred. Please try again!",
+      message: error instanceof Error ? error.message : "An error occurred. Please try again!",
     };
   }
 };
@@ -77,12 +77,12 @@ export const checkUserEmailOrUsernameExist = async (username: string) => {
     }
 
     return { exists: false, field: null, message: "" };
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Error checking user username existence-", error);
     return {
       exists: false,
       field: null,
-      message: error.message || "An error occurred. Please try again!",
+      message: error instanceof Error ? error.message : "An error occurred. Please try again!",
     };
   }
 };
@@ -132,11 +132,11 @@ export const createAccount = async (
         }
       }
     }
-  } catch (error: any) {
-    console.error(error.message);
+  } catch (error: unknown) {
+    console.error(error);
     return {
       success: false,
-      message: error.message || "An error occurred. Please try again!",
+      message: error instanceof Error ? error.message : "An error occurred. Please try again!",
     };
   }
 };

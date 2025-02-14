@@ -20,6 +20,7 @@ import { Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { createAccount, createSession } from "@/lib/appwrite/auth";
 import Link from "next/link";
+import Image from "next/image";
 
 export function AuthForm({ authPage }: { authPage: "login" | "signup" }) {
   const router = useRouter()
@@ -247,10 +248,13 @@ export function AuthForm({ authPage }: { authPage: "login" | "signup" }) {
             </form>
           </Form>
           <div className="relative hidden bg-muted md:block">
-            <img
+            <Image
+              width={500}
+              height={500}
               src="/love.jpg"
-              alt="Image"
+              alt="FairLove"
               className="absolute inset-0 h-full w-full object-cover dark:brightness-[0.2] dark:grayscale opacity-90"
+              priority
             />
           </div>
         </CardContent>
