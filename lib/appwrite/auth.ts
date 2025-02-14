@@ -41,8 +41,10 @@ export const createSession = async (
   try {
     const { account } = await createAdminClient();
     const session = await account.createEmailPasswordSession(email, password);
-
-    (await cookies()).set("session", session.secret, COOKIE_OPTIONS)
+    
+    const cookieData = await cookies()
+    
+    cookieData.set("session", session.secret, COOKIE_OPTIONS);
     return {
       success: true,
       message: "Login Successful",
@@ -149,6 +151,9 @@ export const deleteSession = async () => {
     console.error(error);
   }
 
-  (await cookies()).delete("session");
+  const cookieData = await cookies();
+
+  cookieData.delete("session");
+
   redirect("/login");
 };

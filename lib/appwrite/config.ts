@@ -27,7 +27,9 @@ const createSessionClient = async () => {
     .setEndpoint(process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT!)
     .setProject(process.env.NEXT_PUBLIC_APPWRITE_PROJECT!);
 
-  const session = (await cookies()).get("session");
+  const cookieData = await cookies()
+
+  const session = cookieData.get("session");
 
   if (session) {
     client.setSession(session.value);

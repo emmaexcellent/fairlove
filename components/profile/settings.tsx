@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -33,6 +33,7 @@ import { toast } from "sonner";
 import { Models } from "node-appwrite";
 import { requestEmailVerification, updateProfileData, verifyEmailRequest } from "@/lib/appwrite/crud";
 import { useSearchParams } from "next/navigation";
+import { Loader2 } from "lucide-react";
 
 const nameSchema = z.object({
   username: z.string().min(2, "Name must be at least 2 characters"),
@@ -53,7 +54,7 @@ type NameFormValues = z.infer<typeof nameSchema>;
 type EmailFormValues = z.infer<typeof emailSchema>;
 type PasswordFormValues = z.infer<typeof passwordSchema>;
 
-export default function ProfileSettings({ initialUserData }: { initialUserData: Models.Document }) {
+function ProfileSettings({ initialUserData }: { initialUserData: Models.Document }) {
   const verificationParams = useSearchParams()
   const userId = verificationParams.get("userId")
   const secret = verificationParams.get("secret")
@@ -345,3 +346,20 @@ export default function ProfileSettings({ initialUserData }: { initialUserData: 
     </Card>
   );
 }
+
+
+const LoadingFallback = () => (
+  <div className="w-full h-48 flex flex-col items-center justify-center">
+    <Loader2 size={50} className="animate-spin text-primary" />
+  </div>
+);
+
+const SuspendedProfileSettings = ({user}: {user : Models.Document}) => {
+  return (
+    <Suspense fallback={<LoadingFallback />}>
+      <ProfileSettings initialUserData={user} />
+    </Suspense>
+  );
+};
+
+export default SuspendedProfileSettings
