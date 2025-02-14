@@ -5,7 +5,10 @@ import TopLoader from "@/components/TopLoader";
 import React from "react";
 import { Toaster } from "sonner";
 
-const inter = Inter({ weight: ["200", "400", "500", "700", "800"] });
+const inter = Inter({
+  weight: ["200", "400", "500", "700", "800"],
+  subsets: ["cyrillic", "latin"],
+});
 
 export const metadata = {
   title: "FairLove - Share Genuine Love",
