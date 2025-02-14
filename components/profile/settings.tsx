@@ -60,6 +60,7 @@ function ProfileSettings({ initialUserData }: { initialUserData: Models.Document
 
   if (!initialUserData) {
     router.push("/login?redirect=/profile");
+    return;
   }
   const verificationParams = useSearchParams()
   const userId = verificationParams.get("userId")
@@ -88,17 +89,17 @@ function ProfileSettings({ initialUserData }: { initialUserData: Models.Document
   }, []);
   
   
-  const [user, setUser] = useState<Models.Document | null>(initialUserData);
+  const [user, setUser] = useState<Models.Document>(initialUserData);
   const [isUpdating, setIsUpdating] = useState(false);
   
   const nameForm = useForm<NameFormValues>({
     resolver: zodResolver(nameSchema),
-    defaultValues: { username: user?.username },
+    defaultValues: { username: user.username },
   });
 
   const emailForm = useForm<EmailFormValues>({
     resolver: zodResolver(emailSchema),
-    defaultValues: { email: user?.email, password: "" },
+    defaultValues: { email: user.email, password: "" },
   });
 
   const passwordForm = useForm<PasswordFormValues>({
@@ -112,7 +113,7 @@ function ProfileSettings({ initialUserData }: { initialUserData: Models.Document
   ) => {
     setIsUpdating(true);
     try {
-      const newUserData = await updateProfileData(user?.$id!, field, data)
+      const newUserData = await updateProfileData(user.$id, field, data)
       if (newUserData) {
         setUser(newUserData);
         toast.success(`Your ${field} has been successfully updated.`);
@@ -164,7 +165,7 @@ function ProfileSettings({ initialUserData }: { initialUserData: Models.Document
           <div className="w-full flex justify-between items-center p-3 rounded bg-primary/10">
             <div>
               <h3 className="text-lg font-medium">Username</h3>
-              <p className="text-sm text-gray-500">{user?.username}</p>
+              <p className="text-sm text-gray-500">{user.username}</p>
             </div>
             <Dialog>
               <DialogTrigger asChild>
@@ -211,7 +212,7 @@ function ProfileSettings({ initialUserData }: { initialUserData: Models.Document
           <div className="w-full flex justify-between items-center p-3 rounded bg-primary/10">
             <div>
               <h3 className="text-lg font-medium">Email</h3>
-              <p className="text-sm text-gray-500 line-clamp-1">{user?.email}</p>
+              <p className="text-sm text-gray-500 line-clamp-1">{user.email}</p>
             </div>
             <Dialog>
               <DialogTrigger asChild>
@@ -333,12 +334,12 @@ function ProfileSettings({ initialUserData }: { initialUserData: Models.Document
             <div>
               <h3 className="text-lg font-medium">Email Verification</h3>
               <p
-                className={`text-sm ${user?.verified ? "text-green-500" : "text-gray-500"} `}
+                className={`text-sm ${user.verified ? "text-green-500" : "text-gray-500"} `}
               >
-                {user?.verified ? "Verified" : "Not verified"}
+                {user.verified ? "Verified" : "Not verified"}
               </p>
             </div>
-            {!user?.verified && (
+            {!user.verified && (
               <Button
                 onClick={handleSendEmailVerification}
                 disabled={isUpdating}
