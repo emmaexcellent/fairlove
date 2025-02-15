@@ -4,6 +4,7 @@ import { Roboto_Slab as Inter } from "next/font/google";
 import TopLoader from "@/components/TopLoader";
 import React from "react";
 import { Toaster } from "sonner";
+import { AuthProvider } from "@/context/auth";
 
 const inter = Inter({
   weight: ["200", "400", "500", "700", "800"],
@@ -24,6 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.className} antialiased`}>
+        <AuthProvider>
           {children}
           <TopLoader />
           <Toaster
@@ -37,6 +39,7 @@ export default function RootLayout({
               },
             }}
           />
+        </AuthProvider>
       </body>
     </html>
   );

@@ -34,7 +34,7 @@ import { Models } from "node-appwrite";
 import { requestEmailVerification, updateProfileData, verifyEmailRequest } from "@/lib/appwrite/crud";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Loader2 } from "lucide-react";
-import { getUser } from "@/lib/appwrite/auth";
+import { useAuth } from "@/context/auth";
 
 const nameSchema = z.object({
   username: z.string().min(2, "Name must be at least 2 characters"),
@@ -55,13 +55,10 @@ type NameFormValues = z.infer<typeof nameSchema>;
 type EmailFormValues = z.infer<typeof emailSchema>;
 type PasswordFormValues = z.infer<typeof passwordSchema>;
 
-function ProfileSettings({ initialUserData }: { initialUserData: Models.Document | null }) {
-  const router = useRouter()
+function ProfileSettings({ initialUserData }: { initialUserData: Models.Document }) {
+  const [user, setUser] = useState<Models.Document>(initialUserData);
+  const [isUpdating, setIsUpdating] = useState(false);
 
-  if (!initialUserData) {
-    router.push("/login?redirect=/profile");
-    return;
-  }
   const verificationParams = useSearchParams()
   const userId = verificationParams.get("userId")
   const secret = verificationParams.get("secret")
@@ -89,8 +86,6 @@ function ProfileSettings({ initialUserData }: { initialUserData: Models.Document
   }, []);
   
   
-  const [user, setUser] = useState<Models.Document>(initialUserData);
-  const [isUpdating, setIsUpdating] = useState(false);
   
   const nameForm = useForm<NameFormValues>({
     resolver: zodResolver(nameSchema),
@@ -362,12 +357,14 @@ const LoadingFallback = () => (
 );
 
 const SuspendedProfileSettings = () => {
-  const [user, setUser] = useState<Models.Document | null>(null);
+  const { user } = useAuth()
+  const router = useRouter();
 
-  useEffect(() => {
-    getUser().then((data) => setUser(data));
-  }, []);
-
+  if (!user) {
+    router.push("/login?redirect=/profile");
+    return;
+  }
+  
   return (
     <Suspense fallback={<LoadingFallback />}>
       <ProfileSettings initialUserData={user} />

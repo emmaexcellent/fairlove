@@ -17,14 +17,19 @@ import { Textarea } from "@/components/ui/textarea";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { toast } from "sonner";
 import { messagePresets } from "./message-presetss";
-import { Models } from "node-appwrite";
 import Link from "next/link";
+import { useAuth } from "@/context/auth";
+import { useRouter } from "next/navigation";
 
-interface MessageCardProps {
-  user: Models.Document | null;
-}
 
-export default function MessageCard({ user }: MessageCardProps) {
+
+export default function MessageCard() {
+  const {user} = useAuth();
+  const router = useRouter()
+    
+  if (!user) {
+    router.push("/login?redirect=/anonymous-message");
+  }
 
   const [copied, setCopied] = useState(false);
   const [isEditing, setIsEditing] = useState(false);

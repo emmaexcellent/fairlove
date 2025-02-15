@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -18,29 +18,20 @@ import { useForm } from "react-hook-form";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Loader2 } from "lucide-react";
 import { toast } from "sonner";
-import { createAccount, createSession, getUser } from "@/lib/appwrite/auth";
+import { createAccount, createSession } from "@/lib/appwrite/auth";
 import Link from "next/link";
 import Image from "next/image";
-import { Models } from "node-appwrite";
+import { useAuth } from "@/context/auth";
 
 export function AuthForm({ authPage }: { authPage: "login" | "signup" }) {
+  const {user} = useAuth();
   const router = useRouter()
 
-  const [user, setUser] = useState<Models.Document | null>(null);
-
-  useEffect(() => {
-    getUser().then((data) => setUser(data));
-  }, []);
-    
-  if (user) {
-    router.push("/");
-  }
+  const urlParams = useSearchParams();
+  const redirect_url = urlParams.get("redirect") || "/";
 
   const [submittingForm, setSubmittingForm] = useState(false);
-
-  const urlParams = useSearchParams();
-  const redirect_url = urlParams.get("redirect");
-
+    
   const formSchema = z.object({
     username:
       authPage === "signup"
@@ -58,6 +49,10 @@ export function AuthForm({ authPage }: { authPage: "login" | "signup" }) {
       password: "",
     },
   });
+
+  if (user) {
+    return router.replace("/");
+  }
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
 

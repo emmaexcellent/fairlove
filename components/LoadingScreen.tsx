@@ -34,7 +34,7 @@ export function LoadingScreen({ isLoading }: LoadingScreenProps) {
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-pink-50 to-primary/20">
       <div>
         <div className="relative">
-          <Heart className="w-20 h-20 text-muted" />
+          <Heart className="w-20 h-20 text-muted animate-pulse" />
           <div
             className="absolute inset-0 overflow-hidden"
             style={{
@@ -43,12 +43,9 @@ export function LoadingScreen({ isLoading }: LoadingScreenProps) {
               }%, 100% 100%, 0% 100%)`,
             }}
           >
-            <Heart className="w-20 h-20 text-primary" />
+            <Heart className="w-20 h-20 text-primary animate-pulse" />
           </div>
         </div>
-        <p className="text-center mt-4 text-lg text-primary/80 font-medium">
-          Loading... {Math.round(progress)}%
-        </p>
       </div>
     </div>
   );

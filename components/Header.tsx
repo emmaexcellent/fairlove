@@ -3,26 +3,18 @@
 import { Loader2 } from "lucide-react";
 import Link from "next/link";
 import Logo from "./Logo";
-
-import { useState, useEffect } from "react";
-import { Models } from "node-appwrite";
-import { getUser, deleteSession } from "@/lib/appwrite/auth";
+import { deleteSession } from "@/lib/appwrite/auth";
 import { UserDropdown } from "./UserDropdown";
+import { useAuth } from "@/context/auth";
+import { useState } from "react";
 
 const Header = () => {
-  const [user, setUser] = useState<Models.Document | null>(
-    null
-  );
-  const [loading, setLoading] =useState(true)
+  const {user, loading} = useAuth()
+  const [logoutLoading, setLogoutLoading] = useState(false);
 
-  useEffect(() => {
-    getUser()
-      .then((data) => setUser(data))
-      .finally(() => setLoading(false));
-  }, []);
 
   const logOut = async () => {
-    setLoading(true)
+    setLogoutLoading(true);
     await deleteSession();
   };
 
@@ -31,7 +23,7 @@ const Header = () => {
       <nav className="w-full max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
         <Logo />
         <div className="space-x-4">
-          {loading ? (
+          {loading || logoutLoading ? (
             <Loader2 size={15} className=" text-primary/70 animate-spin" />
           ) : !user ? (
             <Link
