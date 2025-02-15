@@ -51,7 +51,8 @@ export function AuthForm({ authPage }: { authPage: "login" | "signup" }) {
   });
 
   if (user) {
-    return router.replace("/");
+    router.replace("/");
+    return;
   }
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
