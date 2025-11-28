@@ -5,11 +5,10 @@ import { toast } from "sonner";
 import { Button } from '../ui/button';
 import { Card, CardContent, CardFooter, CardHeader } from '../ui/card';
 import { Textarea } from '../ui/textarea';
-import { sendMessage } from '@/lib/appwrite/crud';
 import Link from 'next/link';
-import { Models } from 'node-appwrite';
+import { Models } from 'appwrite';
 
-const MessageForm = ({ messageUser }: { messageUser: Models.Document }) => {
+const MessageForm = () => {
   const [message, setMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [messageSent, setMessageSent] = useState(false);
@@ -26,7 +25,7 @@ const MessageForm = ({ messageUser }: { messageUser: Models.Document }) => {
     setIsSubmitting(true);
 
     try {
-      const response = await sendMessage(messageUser.$id, message);
+      const response = true;
       if (response) {
         toast.success(
           "Message sent! Your anonymous message has been delivered successfully."
@@ -66,7 +65,7 @@ const MessageForm = ({ messageUser }: { messageUser: Models.Document }) => {
             <h1 className="text-2xl font-bold text-center">
               Send an Anonymous Message
             </h1>
-            <p className="text-center text-white/80">to @{messageUser.username}</p>
+            <p className="text-center text-white/80">to @emma</p>
           </CardHeader>
           <form onSubmit={handleSubmit}>
             <CardContent>

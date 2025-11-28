@@ -8,9 +8,9 @@ import {
   type ReactNode,
 } from "react";
 
-import { Models } from "node-appwrite";
 import { LoadingScreen } from "@/components/LoadingScreen";
-import { getUser } from "@/lib/appwrite/auth";
+import { Models } from "appwrite";
+import { account } from "@/lib/appwrite/config";
 
 interface AuthContextType {
   user: Models.Document | null;
@@ -33,8 +33,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   async function checkUser() {
     setLoading(true);
     try {
-      const currentUser = await getUser();
-      setUser(currentUser);
+      const currentUser = await account.get();
+      setUser(null);
       console.log(currentUser);
     } catch (error) {
       console.error("Error checking user:", error);

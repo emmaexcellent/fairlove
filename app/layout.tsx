@@ -1,14 +1,22 @@
 import "./globals.css";
-import { Roboto_Slab as Inter } from "next/font/google";
+import { Playfair_Display, Plus_Jakarta_Sans } from "next/font/google";
 
 import TopLoader from "@/components/TopLoader";
 import React from "react";
 import { Toaster } from "sonner";
 import { AuthProvider } from "@/context/auth";
+import { ThemeProvider } from "@/context/theme";
 
-const inter = Inter({
-  weight: ["200", "400", "500", "700", "800"],
-  subsets: ["cyrillic", "latin"],
+const display = Playfair_Display({
+  subsets: ["latin"],
+  variable: "--font-display",
+  weight: ["400", "500", "600", "700"],
+});
+
+const sans = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  variable: "--font-sans",
+  weight: ["400", "500", "600", "700", "800"],
 });
 
 export const metadata = {
@@ -24,22 +32,24 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.className} antialiased`}>
-        <AuthProvider>
-          {children}
-          <TopLoader />
-          <Toaster
-            toastOptions={{
-              classNames: {
-                icon: "group-data-[type=error]:text-red-500 group-data-[type=success]:text-green-500 group-data-[type=warning]:text-amber-500 group-data-[type=info]:text-blue-500",
-                error: "bg-red-400",
-                success: "text-green-400",
-                warning: "text-yellow-400",
-                info: "bg-blue-400",
-              },
-            }}
-          />
-        </AuthProvider>
+      <body className={`${sans.variable} ${display.variable} antialiased`}>
+        <ThemeProvider>
+          <AuthProvider>
+            {children}
+            <TopLoader />
+            <Toaster
+              toastOptions={{
+                classNames: {
+                  icon: "group-data-[type=error]:text-rose-500 group-data-[type=success]:text-emerald-500 group-data-[type=warning]:text-amber-500 group-data-[type=info]:text-sky-500",
+                  error: "bg-rose-100 text-rose-700",
+                  success: "bg-emerald-100 text-emerald-700",
+                  warning: "bg-amber-50 text-amber-700",
+                  info: "bg-sky-100 text-sky-700",
+                },
+              }}
+            />
+          </AuthProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

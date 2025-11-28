@@ -16,8 +16,27 @@ const AnimatedBackground: React.FC = () => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
-    const hearts: { x: number; y: number; size: number; speed: number }[] = [];
-    const dots: { x: number; y: number; size: number; speed: number }[] = [];
+    const palette = [
+      "rgba(255, 195, 215, 0.35)",
+      "rgba(212, 196, 255, 0.25)",
+      "rgba(173, 216, 255, 0.28)",
+      "rgba(255, 218, 193, 0.3)",
+    ];
+
+    const hearts: {
+      x: number;
+      y: number;
+      size: number;
+      speed: number;
+      hue: string;
+    }[] = [];
+    const dots: {
+      x: number;
+      y: number;
+      size: number;
+      speed: number;
+      hue: string;
+    }[] = [];
 
     for (let i = 0; i < 50; i++) {
       hearts.push({
@@ -25,6 +44,7 @@ const AnimatedBackground: React.FC = () => {
         y: Math.random() * canvas.height,
         size: Math.random() * 20 + 10,
         speed: Math.random() * 2 + 1,
+        hue: palette[Math.floor(Math.random() * palette.length)],
       });
     }
 
@@ -34,6 +54,7 @@ const AnimatedBackground: React.FC = () => {
         y: Math.random() * canvas.height,
         size: Math.random() * 3 + 1,
         speed: Math.random() * 1 + 0.5,
+        hue: palette[Math.floor(Math.random() * palette.length)],
       });
     }
 
@@ -41,7 +62,8 @@ const AnimatedBackground: React.FC = () => {
       ctx: CanvasRenderingContext2D,
       x: number,
       y: number,
-      size: number
+      size: number,
+      heartColor: string
     ) {
       ctx.beginPath();
       ctx.moveTo(x, y + size / 4);
@@ -56,34 +78,41 @@ const AnimatedBackground: React.FC = () => {
         y + (size * 3) / 4
       );
       ctx.quadraticCurveTo(x, y + size / 2, x, y + size / 4);
-      ctx.fillStyle = "rgba(255, 0, 0, 0.1)";
+      ctx.fillStyle = heartColor;
       ctx.fill();
     }
 
     function animate() {
-      if(ctx && canvas){
+      if (ctx && canvas) {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      hearts.forEach((heart) => {
-        drawHeart(ctx, heart.x, heart.y, heart.size);
-        heart.y += heart.speed;
-        if (heart.y > canvas.height) {
-          heart.y = -heart.size;
-          heart.x = Math.random() * canvas.width;
-        }
-      });
+        hearts.forEach((heart) => {
+          ctx.save();
+          ctx.shadowColor = heart.hue;
+          ctx.shadowBlur = 12;
+          drawHeart(ctx, heart.x, heart.y, heart.size, heart.hue);
+          ctx.restore();
+          heart.y += heart.speed * 0.8;
+          heart.x += Math.sin(heart.y * 0.01) * 0.4;
+          if (heart.y > canvas.height) {
+            heart.y = -heart.size;
+            heart.x = Math.random() * canvas.width;
+          }
+        });
 
-      dots.forEach((dot) => {
-        ctx.beginPath();
-        ctx.arc(dot.x, dot.y, dot.size, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
-        ctx.fill();
-        dot.y += dot.speed;
-        if (dot.y > canvas.height) {
-          dot.y = -dot.size;
-          dot.x = Math.random() * canvas.width;
-        }
-      });
+        dots.forEach((dot) => {
+          ctx.beginPath();
+          ctx.arc(dot.x, dot.y, dot.size, 0, Math.PI * 2);
+          ctx.fillStyle = dot.hue;
+          ctx.shadowColor = dot.hue;
+          ctx.shadowBlur = 8;
+          ctx.fill();
+          dot.y += dot.speed * 0.8;
+          if (dot.y > canvas.height) {
+            dot.y = -dot.size;
+            dot.x = Math.random() * canvas.width;
+          }
+        });
       }
 
       requestAnimationFrame(animate);
