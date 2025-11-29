@@ -5,7 +5,6 @@ import TopLoader from "@/components/TopLoader";
 import React from "react";
 import { Toaster } from "sonner";
 import { AuthProvider } from "@/context/auth";
-import { ThemeProvider } from "@/context/theme";
 
 const display = Playfair_Display({
   subsets: ["latin"],
@@ -33,7 +32,6 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${sans.variable} ${display.variable} antialiased`}>
-        <ThemeProvider>
           <AuthProvider>
             {children}
             <TopLoader />
@@ -49,7 +47,6 @@ export default function RootLayout({
               }}
             />
           </AuthProvider>
-        </ThemeProvider>
       </body>
     </html>
   );

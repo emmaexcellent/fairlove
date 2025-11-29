@@ -82,16 +82,16 @@ const themePresets = [
 
 export default async function Home() {
   return (
-    <div className="relative space-y-14">
-      <div className="absolute inset-x-0 top-10 mx-auto h-64 max-w-5xl bg-gradient-to-r from-rose-200/50 via-indigo-100/40 to-amber-100/40 blur-3xl rounded-full -z-10" />
+    <div className="relative max-w-6xl mx-auto space-y-14">
+      <div className="absolute inset-x-0 top-10 mx-auto h-64 max-w-5xl bg-gradient-to-r from-rose-200 via-indigo-100 to-amber-100 blur-3xl rounded-full -z-10" />
 
-      <section className="relative overflow-hidden rounded-3xl bg-white/60 p-6 md:p-10 shadow-xl gradient-border">
-        <div className="absolute -right-12 -top-10 h-44 w-44 rounded-full bg-gradient-to-br from-rose-200/50 to-sky-100/60 blur-3xl" />
-        <div className="absolute -left-10 bottom-0 h-36 w-36 rounded-full bg-gradient-to-tr from-amber-200/60 to-fuchsia-100/60 blur-3xl" />
+      <section className="relative overflow-hidden rounded-3xl bg-white p-6 md:p-10 shadow-xl gradient-border">
+        <div className="absolute -right-12 -top-10 h-44 w-44 rounded-full bg-gradient-to-br from-rose-200 to-sky-100 blur-3xl" />
+        <div className="absolute -left-10 bottom-0 h-36 w-36 rounded-full bg-gradient-to-tr from-amber-200 to-fuchsia-100 blur-3xl" />
 
         <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-8 items-center relative">
           <div className="space-y-6">
-            <p className="text-xs uppercase tracking-[0.25em] text-foreground/60">
+            <p className="text-xs uppercase tracking-[0.25em] text-foreground">
               FairLove Sanctuary
             </p>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-foreground leading-tight serif">
@@ -122,7 +122,7 @@ export default async function Home() {
               {reminders.map((item) => (
                 <div
                   key={item.title}
-                  className="rounded-2xl bg-white/70 p-4 border border-white/60 shadow-sm hover:shadow-lg transition"
+                  className="rounded-2xl bg-white/70 p-4 border border-white shadow-sm hover:shadow-lg transition"
                 >
                   <p className="text-xs font-semibold text-primary uppercase">
                     {item.mood}
@@ -137,20 +137,20 @@ export default async function Home() {
           </div>
 
           <div className="relative w-full">
-            <div className="absolute -right-5 -top-5 h-16 w-16 rounded-full bg-gradient-to-br from-rose-300/60 to-purple-200/60 blur-2xl" />
+            <div className="absolute -right-5 -top-5 h-16 w-16 rounded-full bg-gradient-to-br from-rose-300 to-purple-200 blur-2xl" />
             <div className="rounded-3xl glass glow p-5 space-y-4">
               <div className="flex items-center gap-3">
                 <div className="h-11 w-11 rounded-2xl bg-gradient-to-br from-rose-300 to-fuchsia-200 flex items-center justify-center text-white shadow-lg">
                   <MessageCircleHeart className="w-5 h-5" />
                 </div>
                 <div>
-                  <p className="text-sm text-foreground/60">Daily Love Note</p>
+                  <p className="text-sm text-foreground">Daily Love Note</p>
                   <p className="font-semibold text-foreground">
                     “You are the calm breath between storms.”
                   </p>
                 </div>
               </div>
-              <div className="rounded-2xl border border-white/50 bg-white/60 p-4">
+              <div className="rounded-2xl border border-white bg-white p-4">
                 <div className="flex items-center justify-between">
                   <p className="text-sm font-semibold text-foreground">
                     Mood-based suggestions
@@ -161,7 +161,7 @@ export default async function Home() {
                   {moods.map((mood) => (
                     <div
                       key={mood.label}
-                      className={`rounded-xl bg-gradient-to-r ${mood.gradient} p-3 border border-white/40`}
+                      className={`rounded-xl bg-gradient-to-r ${mood.gradient} p-3 border border-white`}
                     >
                       <p className="text-sm font-semibold">{mood.label}</p>
                       <p className="text-xs text-foreground/70">{mood.note}</p>
@@ -169,9 +169,9 @@ export default async function Home() {
                   ))}
                 </div>
               </div>
-              <div className="rounded-2xl border border-white/50 bg-gradient-to-r from-sky-50 via-white to-rose-50 p-4 flex items-center justify-between gap-3">
+              <div className="rounded-2xl border border-white bg-gradient-to-r from-sky-50 via-white to-rose-50 p-4 flex items-center justify-between gap-3">
                 <div>
-                  <p className="text-xs uppercase tracking-wide text-foreground/60">
+                  <p className="text-xs uppercase tracking-wide text-foreground">
                     LoveVault quick view
                   </p>
                   <p className="text-sm text-foreground">
@@ -193,7 +193,7 @@ export default async function Home() {
       <section className="space-y-6">
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-xs uppercase tracking-[0.25em] text-foreground/60">
+            <p className="text-xs uppercase tracking-[0.25em] text-foreground">
               Home Dashboard
             </p>
             <h2 className="text-3xl font-semibold serif text-foreground">
@@ -202,7 +202,7 @@ export default async function Home() {
           </div>
           <Link
             href="/messages"
-            className="hidden sm:inline-flex items-center gap-2 rounded-full border border-white/60 bg-white/70 px-4 py-2 text-sm text-foreground shadow-sm"
+            className="hidden sm:inline-flex items-center gap-2 rounded-full border border-white bg-white/70 px-4 py-2 text-sm text-foreground shadow-sm"
           >
             <Stars className="w-4 h-4 text-primary" />
             Jump to LoveVault
@@ -212,9 +212,9 @@ export default async function Home() {
           {reminders.map((item) => (
             <div
               key={item.title}
-              className="rounded-2xl bg-gradient-to-br from-white to-rose-50/60 p-5 border border-white/70 shadow-sm hover:shadow-xl transition"
+              className="rounded-2xl bg-gradient-to-br from-white to-rose-50 p-5 border border-white/70 shadow-sm hover:shadow-xl transition"
             >
-              <p className="text-xs text-foreground/60">{item.mood}</p>
+              <p className="text-xs text-foreground">{item.mood}</p>
               <h3 className="mt-2 text-xl font-semibold text-foreground serif">
                 {item.title}
               </h3>
@@ -231,7 +231,7 @@ export default async function Home() {
       <section className="space-y-6">
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-xs uppercase tracking-[0.25em] text-foreground/60">
+            <p className="text-xs uppercase tracking-[0.25em] text-foreground">
               LoveVault
             </p>
             <h2 className="text-3xl font-semibold serif text-foreground">
@@ -240,7 +240,7 @@ export default async function Home() {
           </div>
           <Link
             href="/messages"
-            className="hidden sm:inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-sky-100 to-rose-100 px-4 py-2 text-sm text-foreground border border-white/50"
+            className="hidden sm:inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-sky-100 to-rose-100 px-4 py-2 text-sm text-foreground border border-white"
           >
             Explore vault
           </Link>
@@ -249,16 +249,16 @@ export default async function Home() {
           {vaultMoments.map((moment) => (
             <div
               key={moment.title}
-              className="rounded-2xl p-4 bg-gradient-to-br from-white/80 via-rose-50/70 to-sky-50/70 border border-white/60 shadow-sm hover:shadow-lg transition"
+              className="rounded-2xl p-4 bg-gradient-to-br from-white/80 via-rose-50/70 to-sky-50/70 border border-white shadow-sm hover:shadow-lg transition"
             >
-              <p className="text-xs uppercase tracking-wide text-foreground/60">
+              <p className="text-xs uppercase tracking-wide text-foreground">
                 {moment.type}
               </p>
               <h3 className="mt-2 text-lg font-semibold text-foreground serif">
                 {moment.title}
               </h3>
               <p className="mt-2 text-sm text-foreground/70">{moment.detail}</p>
-              <div className="mt-4 inline-flex items-center gap-1 rounded-full bg-white/70 px-3 py-1 text-xs text-primary border border-white/60">
+              <div className="mt-4 inline-flex items-center gap-1 rounded-full bg-white/70 px-3 py-1 text-xs text-primary border border-white">
                 <Feather className="w-3 h-3" />
                 Kept with love
               </div>
@@ -267,14 +267,14 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-white/80 via-rose-50/80 to-sky-50/80 border border-white/60 shadow-xl">
+      <section className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-white/80 via-rose-50/80 to-sky-50/80 border border-white shadow-xl">
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute -top-10 right-6 h-24 w-24 rounded-full bg-gradient-to-br from-amber-200/60 to-rose-200/60 blur-3xl" />
-          <div className="absolute -bottom-10 left-8 h-32 w-32 rounded-full bg-gradient-to-br from-sky-200/60 to-purple-200/60 blur-3xl" />
+          <div className="absolute -top-10 right-6 h-24 w-24 rounded-full bg-gradient-to-br from-amber-200 to-rose-200 blur-3xl" />
+          <div className="absolute -bottom-10 left-8 h-32 w-32 rounded-full bg-gradient-to-br from-sky-200 to-purple-200 blur-3xl" />
         </div>
         <div className="grid lg:grid-cols-2 gap-0">
           <div className="p-8 space-y-5">
-            <p className="text-xs uppercase tracking-[0.25em] text-foreground/60">
+            <p className="text-xs uppercase tracking-[0.25em] text-foreground">
               Anonymous Love Share
             </p>
             <h2 className="text-3xl font-semibold serif text-foreground">
@@ -295,7 +295,7 @@ export default async function Home() {
               </Link>
               <Link
                 href="/messages"
-                className="inline-flex items-center gap-2 rounded-full border border-white/60 bg-white/80 px-6 py-3 text-foreground shadow-sm"
+                className="inline-flex items-center gap-2 rounded-full border border-white bg-white/80 px-6 py-3 text-foreground shadow-sm"
               >
                 <Stars className="w-4 h-4 text-primary" />
                 Read whispers
@@ -304,7 +304,7 @@ export default async function Home() {
           </div>
           <div className="relative p-8 lg:p-10">
             <div className="absolute inset-0 flex items-center justify-center">
-              <div className="h-48 w-48 rounded-full bg-gradient-to-br from-rose-200/60 via-fuchsia-100/50 to-amber-100/60 blur-3xl" />
+              <div className="h-48 w-48 rounded-full bg-gradient-to-br from-rose-200 via-fuchsia-100 to-amber-100 blur-3xl" />
             </div>
             <div className="relative rounded-3xl glass glow p-6 space-y-3">
               <div className="flex items-center justify-between">
@@ -314,19 +314,21 @@ export default async function Home() {
                 <Sparkles className="w-4 h-4 text-primary" />
               </div>
               <div className="space-y-3">
-                {["Your smile feels like home", "Thank you for listening", "I miss your voice"].map(
-                  (note) => (
-                    <div
-                      key={note}
-                      className="relative overflow-hidden rounded-2xl bg-white/70 px-4 py-3 border border-white/60"
-                    >
-                      <div className="absolute -left-6 -top-6 h-12 w-12 rounded-full bg-gradient-to-br from-rose-200 to-amber-200 opacity-50 blur-xl" />
-                      <p className="text-sm text-foreground">{note}</p>
-                    </div>
-                  )
-                )}
+                {[
+                  "Your smile feels like home",
+                  "Thank you for listening",
+                  "I miss your voice",
+                ].map((note) => (
+                  <div
+                    key={note}
+                    className="relative overflow-hidden rounded-2xl bg-white/70 px-4 py-3 border border-white"
+                  >
+                    <div className="absolute -left-6 -top-6 h-12 w-12 rounded-full bg-gradient-to-br from-rose-200 to-amber-200 opacity-50 blur-xl" />
+                    <p className="text-sm text-foreground">{note}</p>
+                  </div>
+                ))}
               </div>
-              <div className="flex items-center gap-2 text-xs text-foreground/60">
+              <div className="flex items-center gap-2 text-xs text-foreground">
                 <ShieldCheck className="w-4 h-4 text-primary" />
                 Anonymous, gentle, and safe to share.
               </div>
@@ -336,8 +338,8 @@ export default async function Home() {
       </section>
 
       <section className="grid lg:grid-cols-2 gap-6">
-        <div className="rounded-3xl border border-white/60 bg-white/70 p-6 shadow-lg space-y-4">
-          <p className="text-xs uppercase tracking-[0.25em] text-foreground/60">
+        <div className="rounded-3xl border border-white bg-white/70 p-6 shadow-lg space-y-4">
+          <p className="text-xs uppercase tracking-[0.25em] text-foreground">
             Message Composer
           </p>
           <h3 className="text-3xl font-semibold serif text-foreground">
@@ -352,7 +354,7 @@ export default async function Home() {
               <span className="text-sm font-semibold">Writing space</span>
               <Wand2 className="w-4 h-4 text-primary" />
             </div>
-            <div className="rounded-xl bg-white/80 border border-white/60 p-3 text-sm text-foreground/80 min-h-[120px]">
+            <div className="rounded-xl bg-white/80 border border-white p-3 text-sm text-foreground/80 min-h-[120px]">
               Dear love, I hope this note feels like warm sunlight after rain...
             </div>
             <div className="flex flex-wrap gap-2 text-xs">
@@ -375,7 +377,7 @@ export default async function Home() {
               {aiPrompts.map((prompt) => (
                 <div
                   key={prompt}
-                  className="rounded-xl bg-white/70 border border-white/60 px-4 py-3 text-sm text-foreground/80 hover:shadow-md transition"
+                  className="rounded-xl bg-white/70 border border-white px-4 py-3 text-sm text-foreground/80 hover:shadow-md transition"
                 >
                   {prompt}
                 </div>
@@ -390,8 +392,8 @@ export default async function Home() {
           </Link>
         </div>
 
-        <div className="rounded-3xl border border-white/60 bg-gradient-to-br from-sky-50/90 via-white to-rose-50/90 p-6 shadow-lg space-y-4">
-          <p className="text-xs uppercase tracking-[0.25em] text-foreground/60">
+        <div className="rounded-3xl border border-white bg-gradient-to-br from-sky-50/90 via-white to-rose-50/90 p-6 shadow-lg space-y-4">
+          <p className="text-xs uppercase tracking-[0.25em] text-foreground">
             Aesthetic Themes
           </p>
           <h3 className="text-3xl font-semibold serif text-foreground">
@@ -405,9 +407,9 @@ export default async function Home() {
             {themePresets.map((theme) => (
               <div
                 key={theme.name}
-                className={`rounded-2xl bg-gradient-to-br ${theme.gradient} p-4 border border-white/60 shadow-sm`}
+                className={`rounded-2xl bg-gradient-to-br ${theme.gradient} p-4 border border-white shadow-sm`}
               >
-                <div className="h-10 w-10 rounded-2xl bg-white/60 flex items-center justify-center shadow">
+                <div className="h-10 w-10 rounded-2xl bg-white flex items-center justify-center shadow">
                   <Heart className="w-5 h-5 text-primary" />
                 </div>
                 <p className="mt-3 font-semibold text-foreground">
@@ -419,7 +421,7 @@ export default async function Home() {
           </div>
           <Link
             href="/profile"
-            className="inline-flex items-center gap-2 rounded-full border border-white/60 bg-white/80 px-5 py-3 text-foreground shadow-sm"
+            className="inline-flex items-center gap-2 rounded-full border border-white bg-white/80 px-5 py-3 text-foreground shadow-sm"
           >
             <Sparkles className="w-4 h-4 text-primary" />
             Open profile themes

@@ -21,20 +21,25 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "./ui/button";
-import { Models } from "node-appwrite";
+import { Models } from "appwrite";
 
 export function UserDropdown({
   user,
   onLogOut,
 }: {
-  user: Models.Document;
+  user: Models.DefaultRow;
   onLogOut: () => Promise<void>;
 }) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" className="hover:bg-primary/20">
-          {user.username.slice(0, 8)}
+          <Avatar className="h-8 w-8 rounded-lg">
+            <AvatarFallback className="rounded-lg text-primary uppercase">
+              {user.username.slice(0, 2)}
+            </AvatarFallback>
+          </Avatar>
+
           <ChevronsUpDown className="ml-auto size-4" />
         </Button>
       </DropdownMenuTrigger>
@@ -53,8 +58,8 @@ export function UserDropdown({
               </AvatarFallback>
             </Avatar>
             <div className="grid flex-1 text-left text-sm leading-tight">
-              <span className="truncate font-semibold text-sm">
-                {user.username.slice(0, 8)}
+              <span className="line-clamp-1 font-semibold text-sm">
+                {user.username}
               </span>
             </div>
           </div>

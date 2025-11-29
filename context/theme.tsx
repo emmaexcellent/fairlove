@@ -33,8 +33,9 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setTheme] = useState<Theme>("dark");
 
   useEffect(() => {
-    const stored = (localStorage.getItem("fairlove-theme") as Theme) || null;
-    const initial = stored ?? (prefersDark() ? "dark" : "light");
+    // const stored = (localStorage.getItem("fairlove-theme") as Theme) || null;
+    // const initial = stored ?? (prefersDark() ? "dark" : "light");
+    const initial = "dark";
     setTheme(initial);
     applyTheme(initial);
   }, []);

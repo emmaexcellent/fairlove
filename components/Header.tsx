@@ -7,10 +7,10 @@ import { UserDropdown } from "./UserDropdown";
 import { useAuth } from "@/context/auth";
 import { useState } from "react";
 import { ThemeToggle } from "./ThemeToggle";
+import { toast } from "sonner";
 
 const Header = () => {
-  const { user, loading } = useAuth();
-  const [logoutLoading, setLogoutLoading] = useState(false);
+  const { user, logout, loading } = useAuth();
 
   const navLinks = [
     { href: "/", label: "Home" },
@@ -19,7 +19,15 @@ const Header = () => {
     { href: "/composer", label: "Compose" },
   ];
 
-  const logOut = async () => {};
+  const userLogout = async () => {
+    const res = await logout()
+    if(res.success){
+      toast.success(res.message)
+    } else {
+      toast.error(res.message)
+    }
+  }
+
 
   return (
     <header className="w-full fixed top-0 z-40">
@@ -47,7 +55,7 @@ const Header = () => {
 
         <div className="flex items-center gap-2">
           {/* <ThemeToggle /> */}
-          {loading || logoutLoading ? (
+          {loading ? (
             <Loader2 size={18} className="text-primary/70 animate-spin" />
           ) : !user ? (
             <Link
@@ -57,7 +65,7 @@ const Header = () => {
               Sign In
             </Link>
           ) : (
-            <UserDropdown user={user} onLogOut={logOut} />
+            <UserDropdown user={user} onLogOut={userLogout} />
           )}
         </div>
       </nav>

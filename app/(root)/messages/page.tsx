@@ -4,7 +4,7 @@ import MessageList from "@/components/anonymous-message/message-list";
 import { useAuth } from "@/context/auth";
 import { getMessageList } from "@/lib/appwrite/crud";
 import { useRouter } from "next/navigation";
-import { Models } from "node-appwrite";
+import { Models } from "appwrite";
 import { Heart, Inbox, ShieldCheck, Sparkles } from "lucide-react";
 
 export default function MessagesPage() {
