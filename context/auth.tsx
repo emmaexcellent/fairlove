@@ -11,9 +11,9 @@ import {
 import { LoadingScreen } from "@/components/LoadingScreen";
 import { ID, Models, Query } from "appwrite";
 import { account, tablesDB, databaseId } from "@/lib/appwrite/config";
-import { getErrorMsg } from "@/lib/helpers";
+import { getErrorMsg } from "@/lib/error-message";
 
-type response = { success: boolean, message: string}
+type response = { success: boolean; message: string };
 
 interface AuthContextType {
   user: Models.DefaultRow | null;
@@ -37,7 +37,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     checkUser();
   }, []);
 
-
   async function checkUser() {
     setLoading(true);
     try {
@@ -47,7 +46,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         databaseId,
         tableId: "profile",
         queries: [Query.equal("authId", currentUser.$id)],
-      })
+      });
 
       console.log("userProfile: ", userProfile.rows[0]);
       setUser(userProfile.rows[0]);
@@ -58,13 +57,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setLoading(false);
     }
   }
-  
+
   const signup = async (
     email: string,
     password: string,
     username: string
   ): Promise<{ success: boolean; message: string }> => {
-    setLoading(true)
+    setLoading(true);
     try {
       // Step 1: Create user account
       const userAccount = await account.create({
@@ -110,67 +109,66 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   };
 
- const login = async (
-   email: string,
-   password: string
- ): Promise<{ success: boolean; message: string }> => {
-   setLoading(true);
+  const login = async (
+    email: string,
+    password: string
+  ): Promise<{ success: boolean; message: string }> => {
+    setLoading(true);
 
-   try {
-     // Step 1: Attempt to create a session
-     const session = await account.createEmailPasswordSession({
-       email,
-       password,
-     });
+    try {
+      // Step 1: Attempt to create a session
+      const session = await account.createEmailPasswordSession({
+        email,
+        password,
+      });
 
-     if (!session) {
-       return { success: false, message: "Failed to create session" };
-     }
+      if (!session) {
+        return { success: false, message: "Failed to create session" };
+      }
 
-     // Step 2: Fetch and set user details
-     await checkUser();
+      // Step 2: Fetch and set user details
+      await checkUser();
 
-     return { success: true, message: "Login successful" };
-   } catch (error: unknown) {
-     console.error("Error with login:", error);
+      return { success: true, message: "Login successful" };
+    } catch (error: unknown) {
+      console.error("Error with login:", error);
 
-     // Normalize error message
-     const errorMsg = getErrorMsg(error);
-     return { success: false, message: errorMsg };
-   } finally {
-     setLoading(false);
-   }
- };
+      // Normalize error message
+      const errorMsg = getErrorMsg(error);
+      return { success: false, message: errorMsg };
+    } finally {
+      setLoading(false);
+    }
+  };
 
- const logout = async (): Promise<{ success: boolean; message: string }> => {
-   setLoading(true);
+  const logout = async (): Promise<{ success: boolean; message: string }> => {
+    setLoading(true);
 
-   try {
-     // Step 1: Delete the current session
-     await account.deleteSession({sessionId: "current"});
+    try {
+      // Step 1: Delete the current session
+      await account.deleteSession({ sessionId: "current" });
 
-     // Step 2: Clear user state
-     setUser(null);
+      // Step 2: Clear user state
+      setUser(null);
 
-     return { success: true, message: "Logout successful" };
-   } catch (error: unknown) {
-     console.error("Error with logout:", error);
-     
-     const errorMsg = getErrorMsg(error)
+      return { success: true, message: "Logout successful" };
+    } catch (error: unknown) {
+      console.error("Error with logout:", error);
 
-     return { success: false, message: errorMsg };
-   } finally {
-     setLoading(false);
-   }
- };
+      const errorMsg = getErrorMsg(error);
 
-  
+      return { success: false, message: errorMsg };
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const value = {
     user,
     signup,
     login,
     logout,
-    loading
+    loading,
   };
 
   return (

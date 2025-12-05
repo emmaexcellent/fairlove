@@ -1,17 +1,17 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import MessageList from "@/components/anonymous-message/message-list";
 import { useAuth } from "@/context/auth";
-import { getMessageList } from "@/lib/appwrite/crud";
+// import { getMessageList } from "@/lib/appwrite/crud";
 import { useRouter } from "next/navigation";
 import { Models } from "appwrite";
+import Link from "next/link";
 import { Heart, Inbox, ShieldCheck, Sparkles } from "lucide-react";
 
 export default function MessagesPage() {
   const { user, loading } = useAuth();
   const router = useRouter();
 
-  const [messages, setMessages] = useState<Models.Document[] | []>([]);
+  const [messages, setMessages] = useState<Models.DefaultRow[] | []>([]);
 
   useEffect(() => {
     if (loading) return;
@@ -19,7 +19,7 @@ export default function MessagesPage() {
       router.push("/login?redirect=/messages");
       return;
     }
-    getMessageList(user.$id).then((data) => setMessages(data));
+    // getMessageList(user.$id).then((data) => setMessages(data));
   }, [user, loading, router]);
 
   const lovedCount = messages.filter((m) => m.like).length;
@@ -92,7 +92,23 @@ export default function MessagesPage() {
             </div>
             <Sparkles className="w-5 h-5 text-primary" />
           </div>
-          <MessageList initialMessages={messages} />
+          <div className="rounded-2xl border border-white/70 bg-white/70 p-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <p className="text-sm font-semibold text-foreground">
+                Daily Love Note moved
+              </p>
+              <p className="text-sm text-foreground/65">
+                Catch the tweet-style drops, reactions, and rewards on the dedicated page.
+              </p>
+            </div>
+            <Link
+              href="/daily-love-note"
+              className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-rose-500 to-amber-400 px-4 py-2 text-sm font-semibold text-white shadow hover:shadow-md transition"
+            >
+              <Sparkles className="w-4 h-4" />
+              Go to Daily Love Note
+            </Link>
+          </div>
         </section>
       </div>
     </div>
