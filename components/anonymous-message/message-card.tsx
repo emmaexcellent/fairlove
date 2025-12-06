@@ -122,15 +122,12 @@ export function MessageCard({
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <p className="font-semibold text-foreground">Daily Love Note</p>
-              <span className="text-[11px] text-foreground/60">
-                @paperhearts
-              </span>
+              <p className="font-semibold text-foreground text-xs">Daily Love Note</p>
             </div>
             <p className="text-xs text-foreground/60">Dropped {createdLabel}</p>
           </div>
         </div>
-        <Button
+        {/* <Button
           variant="ghost"
           size="sm"
           onClick={() => onDelete(msg?.$id)}
@@ -141,7 +138,7 @@ export function MessageCard({
           ) : (
             <Trash2 className="w-4 h-4" />
           )}
-        </Button>
+        </Button> */}
       </div>
 
       {/* Inner card with background + emojis + message */}

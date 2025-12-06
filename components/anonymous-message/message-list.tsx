@@ -211,14 +211,6 @@ export default function MessageList({
               <Gift className="mr-2 h-4 w-4" />
               Redeem for gifts
             </Button>
-            <Button
-              variant="ghost"
-              className="text-amber-700 hover:text-amber-800"
-              onClick={() => toast.message("Vault items are warming up.")}
-            >
-              <Sparkles className="mr-2 h-4 w-4" />
-              View vault
-            </Button>
           </div>
         </div>
       </div>
