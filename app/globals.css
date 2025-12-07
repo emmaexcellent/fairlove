@@ -76,7 +76,12 @@
 }
 
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
+  scroll-behavior: smooth;
   color: rgb(var(--foreground-rgb));
   background: radial-gradient(circle at 20% 20%, rgba(255, 214, 233, 0.55), transparent 35%),
     radial-gradient(circle at 80% 10%, rgba(186, 208, 255, 0.55), transparent 32%),
@@ -146,6 +151,21 @@ body {
         padding-box,
       linear-gradient(120deg, #f6bed6, #c3b9ff, #8fd4ff, #ffd7a3) border-box;
   }
+}
+
+@keyframes pop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.4); }
+  100% { transform: scale(1); }
+}
+
+.animate-pop {
+  animation: pop 0.3s ease-in-out;
+}
+
+.highlight {
+  transition: background-color 0.5s ease;
+  background-color: hsla(var(--primary) / 0.1);
 }
 
 ::selection {

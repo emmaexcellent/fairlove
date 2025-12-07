@@ -7,6 +7,9 @@ const client = new Client()
 
 
 export const databaseId = "692ac870002efdb04f15"
+export const profileTableId = "profile"
+export const socialMessagesTableId = "social_messages"
+export const commentsTableId = "social_comments";
 
 export const account = new Account(client);
 export const tablesDB = new TablesDB(client);
