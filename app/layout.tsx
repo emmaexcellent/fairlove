@@ -9,6 +9,8 @@ import TopLoader from "@/components/TopLoader";
 import React from "react";
 import { Toaster } from "sonner";
 import { AuthProvider } from "@/context/auth";
+import { CoinProvider } from "@/context/coin";
+import { GiftProvider } from "@/context/gift";
 
 const courgette = Courgette({
   subsets: ["latin"],
@@ -45,19 +47,23 @@ export default function RootLayout({
         className={`${sans.variable} ${display.variable} ${courgette.variable} antialiased`}
       >
         <AuthProvider>
-          {children}
-          <TopLoader />
-          <Toaster
-            toastOptions={{
-              classNames: {
-                icon: "group-data-[type=error]:text-rose-500 group-data-[type=success]:text-emerald-500 group-data-[type=warning]:text-amber-500 group-data-[type=info]:text-sky-500",
-                error: "bg-rose-100 text-rose-700",
-                success: "bg-emerald-100 text-emerald-700",
-                warning: "bg-amber-50 text-amber-700",
-                info: "bg-sky-100 text-sky-700",
-              },
-            }}
-          />
+          <CoinProvider>
+            <GiftProvider>
+              {children}
+              <TopLoader />
+              <Toaster
+                toastOptions={{
+                  classNames: {
+                    icon: "group-data-[type=error]:text-rose-500 group-data-[type=success]:text-emerald-500 group-data-[type=warning]:text-amber-500 group-data-[type=info]:text-sky-500",
+                    error: "bg-rose-100 text-rose-700",
+                    success: "bg-emerald-100 text-emerald-700",
+                    warning: "bg-amber-50 text-amber-700",
+                    info: "bg-sky-100 text-sky-700",
+                  },
+                }}
+              />
+            </GiftProvider>
+          </CoinProvider>
         </AuthProvider>
       </body>
     </html>

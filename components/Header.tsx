@@ -8,6 +8,7 @@ import { useAuth } from "@/context/auth";
 import { useState } from "react";
 import { ThemeToggle } from "./ThemeToggle";
 import { toast } from "sonner";
+import { CoinBalance } from "./coins/CoinBalance";
 
 const Header = () => {
   const { user, logout, loading } = useAuth();
@@ -17,6 +18,7 @@ const Header = () => {
     { href: "/messages", label: "LoveVault" },
     { href: "/anonymous-message", label: "Anonymous Share" },
     { href: "/composer", label: "Compose" },
+    // { href: "/leaderboard", label: "Leaderboard" },
   ];
 
   const userLogout = async () => {
@@ -65,7 +67,10 @@ const Header = () => {
               Sign In
             </Link>
           ) : (
-            <UserDropdown user={user} onLogOut={userLogout} />
+            <>
+              <CoinBalance />
+              <UserDropdown user={user} onLogOut={userLogout} />
+            </>
           )}
         </div>
       </nav>

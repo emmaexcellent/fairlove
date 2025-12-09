@@ -9,6 +9,7 @@ import { updateSocialMessageLikes } from "@/lib/appwrite/crud";
 import CommentList from "./CommentList";
 import CommentForm from "./CommentForm";
 import Avatar from "react-nice-avatar";
+import { GiftButton } from "../gifts/GiftButton";
 
 interface SocialMessageCardProps {
   message: Models.DefaultRow;
@@ -137,6 +138,7 @@ const SocialMessageCard = ({ message }: SocialMessageCardProps) => {
             >
               <Share2 className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
             </Button>
+            <GiftButton />
           </CardFooter>
         </Card>
         {showComments && (

@@ -1,22 +1,18 @@
-import MessageForm from "@/components/anonymous-message/MessageForm";
+import { getProfileByUsername } from "@/lib/appwrite/crud";
 import { redirect } from "next/navigation";
+import SendMessagePageClientWrapper from "./client-page";
 
 export default async function SendMessagePage({
   params,
 }: {
-  params: Promise<{ username: string }>;
+  params: { username: string };
 }) {
-  const username = (await params).username.slice(3);
-  // const messageUser = await validateUsernameExist(username);
-  // if(!messageUser){
-  //   redirect("/anonymous-message")
+  const username = params.username;
+  const profile = await getProfileByUsername(username);
+
+  // if (!profile) {
+  //   redirect("/social");
   // }
 
-  return (
-    <div className="min-h-screen w-full flex items-center justify-center p-4">
-      <div className="w-full max-w-md">
-        <MessageForm />
-      </div>
-    </div>
-  );
+  return <SendMessagePageClientWrapper profile={profile} />;
 }

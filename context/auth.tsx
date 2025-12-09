@@ -89,6 +89,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           username,
           email,
           authId: userAccount.$id,
+          coins: 0,
         },
       });
 
