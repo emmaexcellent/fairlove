@@ -14,10 +14,11 @@ const Header = () => {
   const { user, logout, loading } = useAuth();
 
   const navLinks = [
-    { href: "/", label: "Home" },
+    { href: "/home", label: "Home" },
+    { href: "/daily-love-note", label: "Love Notes" },
     { href: "/messages", label: "LoveVault" },
-    { href: "/anonymous-message", label: "Anonymous Share" },
-    { href: "/composer", label: "Compose" },
+    // { href: "/anonymous-message", label: "Anonymous Share" },
+    { href: "/composer", label: "Send Love" },
     // { href: "/leaderboard", label: "Leaderboard" },
   ];
 

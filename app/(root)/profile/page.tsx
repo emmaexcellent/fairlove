@@ -4,7 +4,7 @@ import SuspendedProfileSettings from "@/components/profile/settings";
 export default async function ProfilePage() {
   
   return (
-    <div className="w-full max-w-6xl mx-auto py-8 pt-20 space-y-3">
+    <div className="w-full max-w-6xl mx-auto py-8 pt-24 px-5 space-y-3">
       <p className="text-xs uppercase tracking-[0.25em] text-foreground/60">
         Profile & Themes
       </p>

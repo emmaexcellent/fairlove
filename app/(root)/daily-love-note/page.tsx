@@ -50,7 +50,7 @@ export default function DailyLoveNotePage() {
   const toggleCollapsed = () => setCollapsed((prev) => !prev);
 
   return (
-    <div className="min-h-screen py-8 pt-16">
+    <div className="min-h-screen py-8 pt-28">
       <div className="max-w-6xl mx-auto space-y-6">
         <section
           className={`relative overflow-hidden rounded-3xl border border-white/70 shadow transition-all duration-300 ${

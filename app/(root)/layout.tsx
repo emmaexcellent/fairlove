@@ -9,7 +9,7 @@ export default function RootLayout({
   return (
     <>
       <Header />
-      <main className="relative container mx-auto !px-4 pt-24 pb-16">
+      <main className="relative container mx-auto !px-0">
         <AnimatedBackground />
         <div className="absolute inset-0 -z-20" />
         <div className="absolute -top-24 -left-12 h-64 w-64 rounded-full bg-gradient-to-br from-rose-200/60 via-fuchsia-100/50 to-sky-100/50 blur-3xl -z-10" />

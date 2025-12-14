@@ -1,0 +1,251 @@
+export interface Gift {
+  id: string;
+  name: string;
+  emoji: string;
+  category: "flowers" | "treats" | "experiences" | "affirmations" | "physical";
+  description: string;
+  message: string;
+  coinCost: number;
+  rare?: boolean;
+}
+
+export const giftCatalog: Gift[] = [
+  // Flowers
+  {
+    id: "rose",
+    name: "Red Rose",
+    emoji: "🌹",
+    category: "flowers",
+    description: "A classic symbol of love",
+    message: "A beautiful red rose blooming just for you",
+    coinCost: 25,
+  },
+  {
+    id: "tulip",
+    name: "Tulip Bouquet",
+    emoji: "🌷",
+    category: "flowers",
+    description: "Spring's gentle embrace",
+    message: "A bouquet of vibrant tulips to brighten your day",
+    coinCost: 30,
+  },
+  {
+    id: "sunflower",
+    name: "Sunflower",
+    emoji: "🌻",
+    category: "flowers",
+    description: "Radiant and warm",
+    message: "A cheerful sunflower following the light",
+    coinCost: 28,
+  },
+  {
+    id: "cherry-blossom",
+    name: "Cherry Blossom",
+    emoji: "🌸",
+    category: "flowers",
+    description: "Delicate & ethereal",
+    message: "Soft petals of cherry blossoms falling gently",
+    coinCost: 35,
+    rare: true,
+  },
+  {
+    id: "lotus",
+    name: "Lotus Flower",
+    emoji: "💐",
+    category: "flowers",
+    description: "Symbol of rebirth",
+    message: "A sacred lotus emerging from the water",
+    coinCost: 40,
+    rare: true,
+  },
+
+  // Treats
+  {
+    id: "chocolate",
+    name: "Chocolate Box",
+    emoji: "🍫",
+    category: "treats",
+    description: "Sweet indulgence",
+    message: "A box of delicious chocolates to savor",
+    coinCost: 20,
+  },
+  {
+    id: "cake",
+    name: "Cake",
+    emoji: "🍰",
+    category: "treats",
+    description: "Celebrate together",
+    message: "A decadent slice of cake just for you",
+    coinCost: 22,
+  },
+  {
+    id: "strawberry",
+    name: "Strawberries",
+    emoji: "🍓",
+    category: "treats",
+    description: "Fresh & romantic",
+    message: "Fresh strawberries, nature's candy",
+    coinCost: 18,
+  },
+  {
+    id: "tea",
+    name: "Tea",
+    emoji: "🫖",
+    category: "treats",
+    description: "Cozy comfort",
+    message: "A warm cup of tea to share a moment together",
+    coinCost: 15,
+  },
+  {
+    id: "ice-cream",
+    name: "Ice Cream",
+    emoji: "🍦",
+    category: "treats",
+    description: "Cool sweetness",
+    message: "A delightful scoop of ice cream",
+    coinCost: 16,
+  },
+
+  // Experiences
+  {
+    id: "heart",
+    name: "Pure Love",
+    emoji: "💕",
+    category: "experiences",
+    description: "A moment of connection",
+    message: "Sending pure love and warmth your way",
+    coinCost: 30,
+  },
+  {
+    id: "hug",
+    name: "Virtual Hug",
+    emoji: "🤍",
+    category: "experiences",
+    description: "A warm embrace",
+    message: "A gentle virtual hug wrapping you in comfort",
+    coinCost: 20,
+  },
+  {
+    id: "moonlight",
+    name: "Moonlit Walk",
+    emoji: "🌙",
+    category: "experiences",
+    description: "Under the stars",
+    message: "An imaginary moonlit walk under starlight",
+    coinCost: 35,
+  },
+  {
+    id: "sparkle",
+    name: "Moment of Magic",
+    emoji: "✨",
+    category: "experiences",
+    description: "Pure enchantment",
+    message: "A sprinkle of magic and wonder",
+    coinCost: 45,
+    rare: true,
+  },
+  {
+    id: "dance",
+    name: "Dancing Together",
+    emoji: "💃",
+    category: "experiences",
+    description: "Lost in the music",
+    message: "An imaginary dance where nothing else matters",
+    coinCost: 50,
+    rare: true,
+  },
+
+  // Affirmations
+  {
+    id: "strong",
+    name: "You Are Strong",
+    emoji: "💪",
+    category: "affirmations",
+    description: "Empowerment",
+    message: "You are stronger than you know",
+    coinCost: 10,
+  },
+  {
+    id: "worthy",
+    name: "You Are Worthy",
+    emoji: "👑",
+    category: "affirmations",
+    description: "Self-love reminder",
+    message: "You deserve all the love and care in the world",
+    coinCost: 10,
+  },
+  {
+    id: "capable",
+    name: "You Are Capable",
+    emoji: "🌟",
+    category: "affirmations",
+    description: "Confidence boost",
+    message: "You can achieve anything you set your heart to",
+    coinCost: 12,
+  },
+  {
+    id: "luminous",
+    name: "You Are Luminous",
+    emoji: "🌈",
+    category: "affirmations",
+    description: "Inner radiance",
+    message: "Your light shines brighter than you realize",
+    coinCost: 15,
+  },
+  {
+    id: "brave",
+    name: "You Are Brave",
+    emoji: "🔥",
+    category: "affirmations",
+    description: "Courage reminder",
+    message: "Your courage inspires everyone around you",
+    coinCost: 12,
+  },
+
+  // Physical Gifts
+  {
+    id: "physical-flowers",
+    name: "Fresh Flower Delivery",
+    emoji: "🎁",
+    category: "physical",
+    description: "Real flowers to their door",
+    message: "Fresh, vibrant flowers arriving with love",
+    coinCost: 150,
+  },
+  {
+    id: "physical-jewelry",
+    name: "Jewelry Box",
+    emoji: "💎",
+    category: "physical",
+    description: "Curated luxury piece",
+    message: "A precious piece to treasure forever",
+    coinCost: 500,
+    rare: true,
+  },
+  {
+    id: "physical-perfume",
+    name: "Luxury Perfume",
+    emoji: "🌸",
+    category: "physical",
+    description: "Signature scent",
+    message: "A bottle of elegance and sophistication",
+    coinCost: 200,
+  },
+  {
+    id: "physical-book",
+    name: "Personalized Book",
+    emoji: "📖",
+    category: "physical",
+    description: "Custom love story",
+    message: "A book written just for you",
+    coinCost: 120,
+  },
+];
+
+export const giftCategories = [
+  "flowers",
+  "treats",
+  "experiences",
+  "affirmations",
+  "physical",
+] as const;

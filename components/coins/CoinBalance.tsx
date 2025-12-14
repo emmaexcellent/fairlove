@@ -7,5 +7,5 @@ import { Badge } from '@/components/ui/badge';
 export function CoinBalance() {
   const { coinBalance } = useCoins();
 
-  return <Badge variant="outline">Coins: {coinBalance}</Badge>;
+  return <Badge variant="outline" className='hidden lg:block'>Coins: {coinBalance}</Badge>;
 }
