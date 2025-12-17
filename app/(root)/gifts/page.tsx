@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import { useState } from "react";
 import { Sparkles } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -9,30 +10,19 @@ import { GiftVault } from "@/components/gifts/gift-vault";
 import { GiftStoreSection } from "@/components/gifts/gift-store-section";
 import { useSearchParams } from "next/navigation";
 
-
 const tabs = [
-  {
-    value: "store",
-    label: "Virtual Gifts"
-  },
-  {
-    value: "physical",
-    label: "Physical Gifts"
-  },
-  {
-    value: "vault",
-    label: "My Vault"
-  }
-]
+  { value: "store", label: "Virtual Gifts" },
+  { value: "physical", label: "Physical Gifts" },
+  { value: "vault", label: "My Vault" },
+];
 
-export default function GiftsPage() {
-  const searchParams = useSearchParams()
+function GiftsPageInner() {
+  const searchParams = useSearchParams();
   const defaultTab = searchParams.get("type");
   const [activeTab, setActiveTab] = useState(defaultTab || "store");
   const [userCoins, setUserCoins] = useState(500);
   const [userStreak] = useState(7);
   const [ownedGifts, setOwnedGifts] = useState<string[]>([]);
-
 
   const handlePurchase = (giftId: string, cost: number) => {
     if (userCoins >= cost) {
@@ -57,11 +47,18 @@ export default function GiftsPage() {
         {/* Coin Display */}
         <CoinDisplay coins={userCoins} streak={userStreak} />
 
-        {/* Main Content */}
+        {/* Tabs */}
         <Tabs defaultValue={activeTab} className="w-full">
           <TabsList className="grid w-full grid-cols-3 gap-2 max-w-3xl mx-auto">
             {tabs.map((tab) => (
-              <TabsTrigger key={tab.value} className={`py-2 ${tab.value === activeTab && "border border-primary"}`} value={tab.value} onClick={() => setActiveTab(tab.value)}>
+              <TabsTrigger
+                key={tab.value}
+                className={`py-2 ${
+                  tab.value === activeTab && "border border-primary"
+                }`}
+                value={tab.value}
+                onClick={() => setActiveTab(tab.value)}
+              >
                 {tab.label}
               </TabsTrigger>
             ))}
@@ -88,5 +85,13 @@ export default function GiftsPage() {
         </Tabs>
       </div>
     </div>
+  );
+}
+
+export default function GiftsPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <GiftsPageInner />
+    </Suspense>
   );
 }
