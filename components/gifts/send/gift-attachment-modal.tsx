@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { X, Zap, Package, ShoppingBag, Sparkles, Check } from "lucide-react";
+import { Package, ShoppingBag, Sparkles, Check } from "lucide-react";
 import {
   giftCatalog,
   giftCategories,
@@ -46,14 +46,12 @@ export function GiftAttachmentModal({
   onClose,
   onSelectGift,
   userCoins,
-  onPurchaseGift,
   ownedGifts,
   selectedGiftIds,
 }: GiftAttachmentModalProps) {
   const [activeTab, setActiveTab] = useState<"vault" | "store">("vault");
   const [selectedCategory, setSelectedCategory] =
     useState<(typeof giftCategories)[number]>("flowers");
-  const [purchasingGiftId, setPurchasingGiftId] = useState<string | null>(null);
 
   const ownedGiftDetails = giftCatalog.filter((gift) =>
     ownedGifts.includes(gift.id)
@@ -62,16 +60,6 @@ export function GiftAttachmentModal({
     (gift) => gift.category === selectedCategory
   );
 
-  const handlePurchaseAndAttach = (gift: GiftType) => {
-    if (userCoins >= gift.coinCost) {
-      setPurchasingGiftId(gift.id);
-      setTimeout(() => {
-        onPurchaseGift(gift);
-        onSelectGift(gift);
-        setPurchasingGiftId(null);
-      }, 800);
-    }
-  };
 
   // const handlePurchase = (giftId: string, cost: number) => {
   //   if (userCoins >= cost) {
@@ -240,16 +228,11 @@ export function GiftAttachmentModal({
                 {/* Store Grid */}
                 <div className="grid md:grid-cols-2 gap-4">
                   {storeGifts.map((gift) => {
-                    const isOwned = ownedGifts.includes(gift.id);
-                    const canAfford = userCoins >= gift.coinCost;
-                    const isPurchasing = purchasingGiftId === gift.id;
-
                     return (
                       <GiftCard
                         key={gift.id}
                         gift={gift}
                         userCoins={userCoins}
-                        isOwned={ownedGifts.includes(gift.id)}
                         onPurchase={undefined}
                       />
                     );

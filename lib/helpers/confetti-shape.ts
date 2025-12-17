@@ -3,7 +3,7 @@ import confetti from "canvas-confetti"; // npm i canvas-confetti
 export const triggerEmojiConfetti = (emoji: string) => {
   if (typeof window === "undefined") return;
 
-  const anyConfetti = confetti as any;
+  const anyConfetti = confetti;
 
   // Fallback: if shapeFromText isn't available for some reason, just fire normal confetti
   if (!anyConfetti.shapeFromText) {

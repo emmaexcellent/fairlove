@@ -97,9 +97,10 @@ export function AuthForm({ authPage }: { authPage: "login" | "signup" }) {
           setUsernameCheckedValue(watchedUsername.trim());
         }
       } catch (error) {
+        console.error(error);
         form.setError("username", {
           type: "manual",
-          message: "Could not verify username. Please try again.",
+        message: "Coul not verify username. Please try again.",
         });
       } finally {
         setCheckingUsername(false);

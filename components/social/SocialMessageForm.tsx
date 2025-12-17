@@ -3,7 +3,7 @@ import { Loader2, Send } from 'lucide-react';
 import React, { useState } from 'react';
 import { toast } from 'sonner';
 import { Button } from '../ui/button';
-import { Card, CardContent, CardFooter, CardHeader } from '../ui/card';
+import { Card, CardContent, CardFooter } from '../ui/card';
 import { Textarea } from '../ui/textarea';
 import { useAuth } from '@/context/auth';
 import { createSocialMessage } from '@/lib/appwrite/crud';

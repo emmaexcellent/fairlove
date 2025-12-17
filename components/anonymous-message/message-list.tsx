@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Coins, Gift, Sparkles } from "lucide-react";
+import { Coins, Gift } from "lucide-react";
 import { toast } from "sonner";
 import { MessageCard } from "./message-card";
 import { BackgroundTheme, LoveMessage, ReactionKey } from "./types";
@@ -147,6 +147,7 @@ export default function MessageList({
         )
       );
     } catch (error) {
+      console.log("share error: ", error)
       toast.error("Could not share right now. Try again?");
     } finally {
       setAction(null);

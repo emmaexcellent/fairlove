@@ -1,4 +1,3 @@
-import { Models } from "appwrite";
 
 export type ReactionKey = "heart" | "inLove" | "spark" | "rose";
 

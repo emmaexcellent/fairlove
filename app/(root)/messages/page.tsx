@@ -11,7 +11,7 @@ export default function MessagesPage() {
   const { user, loading } = useAuth();
   const router = useRouter();
 
-  const [messages, setMessages] = useState<Models.DefaultRow[] | []>([]);
+  const [messages] = useState<Models.DefaultRow[] | []>([]);
 
   useEffect(() => {
     if (loading) return;

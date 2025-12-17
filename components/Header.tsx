@@ -5,8 +5,6 @@ import Link from "next/link";
 import Logo from "./Logo";
 import { UserDropdown } from "./UserDropdown";
 import { useAuth } from "@/context/auth";
-import { useState } from "react";
-import { ThemeToggle } from "./ThemeToggle";
 import { toast } from "sonner";
 import { CoinBalance } from "./coins/CoinBalance";
 

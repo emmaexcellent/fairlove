@@ -8,7 +8,6 @@ import {
   Loader2,
   Share2,
   Sparkles,
-  Trash2,
   Twitter,
 } from "lucide-react";
 import html2canvas from "html2canvas";
@@ -48,7 +47,6 @@ export function MessageCard({
   action,
   onReaction,
   onShare,
-  onDelete,
   onBackgroundChange,
 }: MessageCardProps) {
   // This ref will be used to capture the card as an image
@@ -83,10 +81,10 @@ export function MessageCard({
       // Prefer native share sheet on mobile
       if (
         typeof navigator !== "undefined" &&
-        (navigator as any).canShare &&
-        (navigator as any).canShare({ files: [file] })
+        (navigator).canShare &&
+        (navigator).canShare({ files: [file] })
       ) {
-        await (navigator as any).share({
+        await (navigator).share({
           files: [file],
           title: "Daily Love Note",
           text: `${msg?.message || "From Paper Hearts"}\n\n${WATERMARK_TEXT}`,

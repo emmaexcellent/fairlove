@@ -47,8 +47,8 @@ export function PhysicalGiftsSection({
               Physical Gifts
             </h3>
             <p className="text-sm text-purple-800/80 leading-relaxed">
-              Curated premium gifts delivered to your loved one's doorstep. All
-              items are sourced from trusted partners and shipped with care.
+              Curated premium gifts delivered to your loved one&apos;s doorstep.
+              All items are sourced from trusted partners and shipped with care.
             </p>
           </div>
         </div>

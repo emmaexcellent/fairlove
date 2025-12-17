@@ -5,7 +5,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import MostReactedNotes from "@/components/leaderboard/MostReactedNotes";
 import TrendingAnonymousPosts from "@/components/leaderboard/TrendingAnonymousPosts";
 
@@ -19,7 +19,7 @@ export default async function LeaderboardPage() {
           Leaderboards
         </h1>
         <p className="text-foreground/70">
-          See who's making the biggest impact in our community.
+          See who&apos;s making the biggest impact in our community.
         </p>
       </div>
       <div>
@@ -27,7 +27,7 @@ export default async function LeaderboardPage() {
           Top Gifters
         </h2>
         <p className="text-foreground/70">
-          See who's spreading the most love in our community.
+          See who&apos;s spreading the most love in our community.
         </p>
         <Card className="mt-4">
           <CardHeader>
@@ -41,11 +41,11 @@ export default async function LeaderboardPage() {
                   <Avatar>
                     {/* <AvatarImage src={gifter.avatar} /> */}
                     <AvatarFallback>
-                      {gifter?.username.charAt(0).toUpperCase()}
+                      EM {/* {gifter?.username.charAt(0).toUpperCase()} */}
                     </AvatarFallback>
                   </Avatar>
                   <div className="flex-1">
-                    <p className="font-semibold">{gifter.username}</p>
+                    <p className="font-semibold">EMmanuel</p>
                     <p className="text-sm text-foreground/70">
                       {gifter.giftCount} gifts sent
                     </p>

@@ -8,8 +8,6 @@ import {
 } from "./config";
 import { getErrorMsg } from "../error-message";
 import { toast } from "sonner";
-import { genConfig } from "react-nice-avatar";
-import { error } from "console";
 
 export const getCommentsForMessage = async (messageId: string) => {
   try {
@@ -228,13 +226,13 @@ export const getTopGifters = async () => {
       tableId: "gifts",
     });
 
-    const gifters = res.rows.reduce((acc: any, gift: any) => {
+    const gifters = res.rows.reduce((acc: Record<string, number>, gift) => {
       acc[gift.senderId] = (acc[gift.senderId] || 0) + 1;
       return acc;
     }, {});
 
     const sortedGifters = Object.entries(gifters).sort(
-      (a: any, b: any) => b[1] - a[1]
+      (a, b) => b[1] - a[1]
     );
 
     const topGifters = await Promise.all(

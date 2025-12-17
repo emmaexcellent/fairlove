@@ -53,6 +53,7 @@ export function GiftModal({ receiverId }: { receiverId: string }) {
       setSelectedGift(null);
       closeGiftModal();
     } catch (error) {
+      console.log(error)
       // spendCoins already shows a toast on error
     }
   };

@@ -88,8 +88,8 @@ export default function HomePage() {
               Everything you need to express love
             </h2>
             <p className="text-sm text-foreground/70 max-w-2xl mx-auto text-pretty">
-              From daily check-ins to special moments, we've built the perfect
-              platform for meaningful connections.
+              From daily check-ins to special moments, we&apos;ve built the
+              perfect platform for meaningful connections.
             </p>
           </div>
 
@@ -295,8 +295,8 @@ export default function HomePage() {
                 ))}
               </div>
               <p className="text-foreground/80 leading-relaxed italic">
-                "This platform helped me reconnect with my family. The daily
-                love notes feature is absolutely beautiful!"
+                &quot;This platform helped me reconnect with my family. The
+                daily love notes feature is absolutely beautiful!&quot;
               </p>
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full bg-gradient-to-br from-rose-300 to-pink-300" />
@@ -317,8 +317,8 @@ export default function HomePage() {
                 ))}
               </div>
               <p className="text-foreground/80 leading-relaxed italic">
-                "The virtual gifts are so thoughtful! My partner loves receiving
-                surprise messages with gifts attached."
+                &quot;The virtual gifts are so thoughtful! My partner loves
+                receiving surprise messages with gifts attached.&quot;
               </p>
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full bg-gradient-to-br from-pink-300 to-fuchsia-300" />
@@ -341,8 +341,8 @@ export default function HomePage() {
                 ))}
               </div>
               <p className="text-foreground/80 leading-relaxed italic">
-                "I use self-love mode every morning. It's become my favorite way
-                to practice self-care and affirmation."
+                &quot;I use self-love mode every morning. It&apos;s become my
+                favorite way to practice self-care and affirmation.&quot;
               </p>
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full bg-gradient-to-br from-amber-300 to-orange-300" />
@@ -360,7 +360,7 @@ export default function HomePage() {
       <section className="py-20 px-6 bg-primary text-white">
         <div className="max-w-4xl mx-auto text-center space-y-8">
           <h2 className="text-4xl md:text-6xl font-bold text-balance">
-            Ready to make someone's day?
+            Ready to make someone&apos;s day?
           </h2>
           <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto text-pretty leading-relaxed">
             Join thousands of people spreading love, building stronger

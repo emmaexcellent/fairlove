@@ -31,7 +31,7 @@ import {
 } from "@/components/ui/dialog";
 import { toast } from "sonner";
 import { Models } from "appwrite";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { Loader2 } from "lucide-react";
 import { useAuth } from "@/context/auth";
 
@@ -108,42 +108,13 @@ const themeOptions = [
 ];
 
 function ProfileSettings({
-  initialUserData,
+  initialUserData: user,
 }: {
-  initialUserData: Models.Document;
+  initialUserData: Models.DefaultRow;
 }) {
-  const [user, setUser] = useState<Models.Document>(initialUserData);
   const [isUpdating, setIsUpdating] = useState(false);
   const [activeTheme, setActiveTheme] = useState("rose-dawn");
-
-  const verificationParams = useSearchParams();
-  const userId = verificationParams.get("userId");
-  const secret = verificationParams.get("secret");
-
-  const removeQueryParams = () => {
-    const url = new URL(window.location.href);
-    url.searchParams.delete("userId");
-    url.searchParams.delete("secret");
-    window.history.replaceState({}, document.title, url.pathname);
-  };
-
-  // const verifyEmailSecret = async () => {
-  //   if (!userId || !secret) return;
-  //   const response = await verifyEmailRequest(userId, secret, user);
-  //   if (response.user) {
-  //     setUser(response.user);
-  //     toast.success(response.message);
-  //   } else {
-  //     toast.error(response.message);
-  //   }
-  //   removeQueryParams();
-  // };
-
-  // useEffect(() => {
-  //   verifyEmailSecret();
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
-
+  
   const nameForm = useForm<NameFormValues>({
     resolver: zodResolver(nameSchema),
     defaultValues: { username: "" },

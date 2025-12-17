@@ -4,21 +4,19 @@ import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Zap, Sparkles, Check } from "lucide-react";
+import { Zap, Sparkles } from "lucide-react";
 import { Gift } from "@/lib/gift-data";
 import { toast } from "sonner";
 
 interface GiftCardProps {
   gift: Gift;
   userCoins: number;
-  isOwned: boolean;
   onPurchase?: (giftId: string, cost: number, quantity: number) => boolean;
 }
 
 export function GiftCard({
   gift,
   userCoins,
-  isOwned,
   onPurchase,
 }: GiftCardProps) {
   const [isPurchasing, setIsPurchasing] = useState(false);

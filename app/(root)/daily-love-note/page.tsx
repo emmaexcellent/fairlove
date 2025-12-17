@@ -4,7 +4,6 @@ import React, { useEffect, useState } from "react";
 import MessageList from "@/components/anonymous-message/message-list";
 import { useAuth } from "@/context/auth";
 import { useRouter } from "next/navigation";
-import { Models } from "appwrite";
 import {
   Sparkles,
   Heart,
@@ -16,7 +15,6 @@ import {
 export default function DailyLoveNotePage() {
   const { user, loading } = useAuth();
   const router = useRouter();
-  const [messages, setMessages] = useState<Models.DefaultRow[] | null>(null);
   const [collapsed, setCollapsed] = useState(true);
 
   useEffect(() => {
@@ -26,7 +24,8 @@ export default function DailyLoveNotePage() {
     if (res !== null) {
       try {
         collapsibleStatus = JSON.parse(res);
-      } catch (e) {
+      } catch (err) {
+        console.log("error: ", err)
         collapsibleStatus = false;
       }
     }

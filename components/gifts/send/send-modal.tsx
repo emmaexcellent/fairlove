@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
-import { X, Send, Loader2, CheckCircle } from "lucide-react";
+import { useState, useRef } from "react";
+import { Send, Loader2, CheckCircle } from "lucide-react";
 import type { Gift as GiftType } from "@/lib/gift-data";
 
 // Shadcn Components
@@ -18,9 +18,6 @@ import {
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Label } from "@/components/ui/label";
-
-// Confetti library
-import confetti from "canvas-confetti";
 
 interface SendModalProps {
   isOpen: boolean;

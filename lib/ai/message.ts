@@ -1,13 +1,11 @@
 "use server"
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
-const GEMINI_API_KEY = "AIzaSyDbUdbFQuFEfJCswH2wST4wjYWCrB_Z8fk";
 
-const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
 
 export async function refineMessage(message: string, themeBadge: string) {
-
-  console.log("message: ", message);
+  
   const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
 
   const prompt = `

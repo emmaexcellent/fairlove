@@ -18,7 +18,6 @@ import {
 
 // Components & Types
 import { GiftAttachmentModal } from "@/components/gifts/send/gift-attachment-modal";
-import { GiftPreviewCard } from "@/components/gifts/send/gift-preview-card";
 import { SendModal } from "@/components/gifts/send/send-modal";
 import type { Gift as GiftType } from "@/lib/gift-data";
 import { refineMessage } from "@/lib/ai/message";

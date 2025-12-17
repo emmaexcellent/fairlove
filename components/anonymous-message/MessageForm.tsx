@@ -6,7 +6,6 @@ import { Button } from '../ui/button';
 import { Card, CardContent, CardFooter, CardHeader } from '../ui/card';
 import { Textarea } from '../ui/textarea';
 import Link from 'next/link';
-import { Models } from 'appwrite';
 
 const MessageForm = () => {
   const [message, setMessage] = useState("");

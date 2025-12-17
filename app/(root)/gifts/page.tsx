@@ -1,9 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowLeft, Sparkles } from "lucide-react";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import { Sparkles } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { CoinDisplay } from "@/components/coins/coin-display";
 import { PhysicalGiftsSection } from "@/components/gifts/physical-gifts-section";
