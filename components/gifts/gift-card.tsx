@@ -11,7 +11,7 @@ import { toast } from "sonner";
 interface GiftCardProps {
   gift: Gift;
   userCoins: number;
-  isOwned: boolean;
+  isOwned?: boolean;
   onPurchase?: (giftId: string, cost: number, quantity: number) => boolean;
 }
 
