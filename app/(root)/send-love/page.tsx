@@ -286,7 +286,7 @@ export default function ComposerPage() {
             >
               <div className="flex-1">
                 <Heart className="w-6 h-6 text-primary mb-6 animate-pulse" />
-                <p className="serif text-xl text-foreground/90 leading-relaxed italic whitespace-pre-wrap">
+                <p className="font-courgette text-xl text-foreground/90 leading-relaxed italic whitespace-pre-wrap text-center max-w-xl mx-auto">
                   {message} {chosenSticker}
                 </p>
               </div>
