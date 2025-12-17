@@ -151,6 +151,21 @@ body {
         padding-box,
       linear-gradient(120deg, #f6bed6, #c3b9ff, #8fd4ff, #ffd7a3) border-box;
   }
+  @keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.ai-loading-shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.6) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
 }
 
 @keyframes pop {

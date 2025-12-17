@@ -43,14 +43,17 @@ export default function HomePage() {
           </p>
 
           <div className="flex flex-wrap gap-4 justify-center pt-4">
-            <Button
-              size="lg"
-              className="rounded bg-gradient-to-r from-rose-500 to-pink-500 text-white shadow-lg hover:shadow-xl transition-all text-lg px-8"
-            >
-              <Heart className="w-5 h-5 mr-2" />
-              Start Sending Love
-              <ArrowRight className="w-5 h-5 ml-2" />
-            </Button>
+            <Link href="/send-love">
+              <Button
+                size="lg"
+                className="rounded bg-gradient-to-r from-rose-500 to-pink-500 text-white shadow-lg hover:shadow-xl transition-all text-lg px-8"
+              >
+                <Heart className="w-5 h-5 mr-2" />
+                Start Sending Love
+                <ArrowRight className="w-5 h-5 ml-2" />
+              </Button>
+            </Link>
+
             <Button
               size="lg"
               variant="outline"
@@ -187,7 +190,7 @@ export default function HomePage() {
                 Beautiful, heartfelt messages made easy.
               </p>
               <Link
-                href="/compose"
+                href="/send-love"
                 className="inline-flex items-center gap-2 text-sky-600 font-medium hover:gap-3 transition-all"
               >
                 Get started <ArrowRight className="w-4 h-4" />
