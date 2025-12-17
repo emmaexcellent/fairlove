@@ -1,6 +1,6 @@
 "use server";
 
-import { Models } from "node-appwrite";
+import { Models } from "appwrite";
 import nodemailer from "nodemailer";
 import { emailVerification } from "./templates";
 
@@ -20,7 +20,7 @@ const transporter = nodemailer.createTransport({
 });
 
 
-export const sendVerificationEmail = async (userId: string, secret: string, user: Models.Document) => {
+export const sendVerificationEmail = async (userId: string, secret: string, user: Models.DefaultRow) => {
 
   const verificationLink = `${process.env
     .NEXT_PUBLIC_URL!}/profile?userId=${userId}&secret=${secret}`;
