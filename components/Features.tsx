@@ -3,7 +3,7 @@
 import Link from "next/link";
 import React from "react";
 import Image from "next/image";
-import { Models } from "node-appwrite";
+import { Models } from "appwrite";
 
 const features = [
   {
