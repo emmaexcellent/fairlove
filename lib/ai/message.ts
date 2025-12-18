@@ -5,6 +5,8 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
 
 export async function refineMessage(message: string, themeBadge: string) {
+
+  console.log("message: ", message)
   
   const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
 
@@ -12,7 +14,7 @@ export async function refineMessage(message: string, themeBadge: string) {
       You are a romantic ghostwriter. Your task is to rewrite the user's message to be more poetic, emotional, lovely, sweetly and heartfelt.
       
       TONE: ${themeBadge}
-      LIMIT: Under 300 characters but long enough for reading.
+      LIMIT: Under 100 words.
       STRICT RULE: Return ONLY the rewritten text. No introductions, no options, no bold titles, and no quotes.
       
       USER MESSAGE: "${message}"
