@@ -79,11 +79,11 @@ const FloatingIllustration = ReactMemo(
     className?: string;
   }) => (
     <motion.div
-      initial={{ opacity: 0.1 }}
+      initial={{ opacity: 0.2 }}
       animate={{
         y: [0, -15, 0], // Reduced movement for mobile
         rotate: [-4, 4, -4], // Reduced rotation for performance
-        opacity: 0.6,
+        opacity: 0.5,
       }}
       transition={{
         duration: speed,
@@ -227,7 +227,7 @@ export default function OptimizedChristmasPage() {
   }, []);
 
   return (
-    <div className="min-h-screen overflow-x-hidden relative bg-gradient-to-b from-slate-50 to-white">
+    <div className="min-h-screen overflow-x-hidden relative">
       {/* Optimized Snowfall with Canvas */}
       {isLoaded && (
         <div className="fixed inset-0 pointer-events-none z-40 overflow-hidden">
